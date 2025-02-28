@@ -8,6 +8,13 @@ const FractalTree = () => {
   const [randomFactor, setRandomFactor] = useState(5);
   const [colorShift, setColorShift] = useState(0);
 
+  const generateNewTree = () => {
+    setDepth(Math.floor(Math.random() * 10) + 5);
+    setAngle(Math.floor(Math.random() * 30) + 15);
+    setRandomFactor(Math.floor(Math.random() * 10) + 5);
+    setColorShift(Math.floor(Math.random() * 360));
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -95,9 +102,12 @@ const FractalTree = () => {
   }, [depth, angle, growthSpeed, randomFactor, colorShift]);
 
   return (
-    <div className='flex flex-col items-center bg-black p-5'>
-      <canvas ref={canvasRef} className='border border-gray-500' />
-      <div className='mt-4 flex gap-4'>
+    <div className='relative bg-black p-5'>
+      <canvas
+        ref={canvasRef}
+        className='border border-gray-500 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+      />
+      <div className='flex gap-4 flex-col fixed top-1/2 -translate-y-1/2'>
         <label className='text-white'>
           Depth: {depth}
           <input
@@ -142,12 +152,34 @@ const FractalTree = () => {
             className='ml-2'
           />
         </label>
+        <button
+          className=' bg-blue-500 text-white px-4 py-2 rounded-lg w-[200px] cursor-pointer'
+          onClick={() => setColorShift((prev) => prev + 30)}>
+          Change Tree Color
+        </button>
+        <button
+          className=' bg-yellow-500 text-white px-4 py-2 rounded-lg w-[200px] cursor-pointer'
+          onClick={generateNewTree}>
+          Random New Tree
+        </button>
+        <button
+          className=' bg-green-500 text-white px-4 py-2 rounded-lg w-[200px] cursor-pointer'
+          onClick={() => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+
+            const dataUrl = canvas.toDataURL('image/png');
+            const newTab = window.open();
+            if (newTab) {
+              newTab.document.write(
+                `<img src="${dataUrl}" onload="window.print(); window.close();" />`,
+              );
+              newTab.document.close();
+            }
+          }}>
+          Print Tree
+        </button>
       </div>
-      <button
-        className='mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg'
-        onClick={() => setColorShift((prev) => prev + 30)}>
-        Change Tree Color
-      </button>
     </div>
   );
 };
