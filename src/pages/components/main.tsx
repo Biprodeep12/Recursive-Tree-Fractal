@@ -108,7 +108,7 @@ const FractalTree = () => {
         className='border border-gray-500 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
       />
       <div className='flex gap-4 flex-col fixed top-1/2 -translate-y-1/2'>
-        <label className='text-white'>
+        <label className='text-white flex flex-col'>
           Depth: {depth}
           <input
             type='range'
@@ -116,10 +116,9 @@ const FractalTree = () => {
             max='15'
             value={depth}
             onChange={(e) => setDepth(Number(e.target.value))}
-            className='ml-2'
           />
         </label>
-        <label className='text-white'>
+        <label className='text-white flex flex-col'>
           Angle: {angle}°
           <input
             type='range'
@@ -127,10 +126,9 @@ const FractalTree = () => {
             max='45'
             value={angle}
             onChange={(e) => setAngle(Number(e.target.value))}
-            className='ml-2'
           />
         </label>
-        <label className='text-white'>
+        <label className='text-white flex flex-col'>
           Speed: {growthSpeed}
           <input
             type='range'
@@ -138,10 +136,9 @@ const FractalTree = () => {
             max='10'
             value={growthSpeed}
             onChange={(e) => setGrowthSpeed(Number(e.target.value))}
-            className='ml-2'
           />
         </label>
-        <label className='text-white'>
+        <label className='text-white flex flex-col'>
           Branch Randomness: {randomFactor}
           <input
             type='range'
@@ -149,7 +146,6 @@ const FractalTree = () => {
             max='15'
             value={randomFactor}
             onChange={(e) => setRandomFactor(Number(e.target.value))}
-            className='ml-2'
           />
         </label>
         <button
