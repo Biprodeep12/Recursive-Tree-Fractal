@@ -105,9 +105,9 @@ const FractalTree = () => {
     <div className='relative bg-black p-5'>
       <canvas
         ref={canvasRef}
-        className='border border-gray-500 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+        className='border border-gray-500 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 main'
       />
-      <div className='flex gap-4 flex-col fixed top-1/2 -translate-y-1/2'>
+      <div className='flex gap-4 flex-col fixed top-1/2 -translate-y-1/2 opt'>
         <label className='text-white flex flex-col'>
           Depth: {depth}
           <input
